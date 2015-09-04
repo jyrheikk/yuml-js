@@ -1,4 +1,3 @@
-/** @see https://github.com/jyrheikk/yuml-js/ */
 (function (outerTag, diagramClassSuffix) {
   var UML = {
     diagramNames: [ 'activity', 'class', 'usecase' ],
@@ -27,7 +26,7 @@
   };
 
   var tags = document.getElementsByTagName(outerTag);
-  tags.forEach(function (tag) {
+  Array.prototype.forEach.call(tags, function (tag) {
     var diagramName = getValue(tag.className, UML.diagramNames, diagramClassSuffix);
     if (diagramName) {
       var url = UML.getDiagramURL(tag.innerHTML, diagramName);
@@ -42,7 +41,7 @@
         value = hay;
         return true;
       }
-    }
+    });
     return value;
   }
 
