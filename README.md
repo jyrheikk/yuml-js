@@ -4,8 +4,8 @@
 
 On your web page,
 
-* Create and maintain UML diagrams in simple [yUML text notation](http://yuml.me/).
-* Include `yUML.js` (from your web server) to generate UML diagram images on-the-fly.
+1. Create and maintain UML diagrams in simple [yUML text notation](http://yuml.me/).
+1. Include [`yUML.js`](yUML.js) (from your web server) to generate UML diagram images on-the-fly.
 
 **Ease of maintenance** is the main benefit: when UML diagrams are generated from text, no proprietary drawing tool is needed.
 
