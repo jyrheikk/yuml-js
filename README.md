@@ -39,7 +39,7 @@ Class diagrams describe systems/components and their relations/dependencies:
 
     <script src="yUML.js"></script>
 
-See the [example HTML page](https://googledrive.com/host/0B_SyvfG74aYYdDBOY3VSSG14QjA/example-yuml-js.html) that contains the UML diagrams above. (Note that `yUML.js` cannot be included on GitHub pages because they strip away the `script` tags.)
+See the [example HTML page](https://7c84355696c3b578318d265066075d05440fb740.googledrive.com/host/0B_SyvfG74aYYdDBOY3VSSG14QjA/example-yuml-js.html) that contains the UML diagrams above. (Note that `yUML.js` cannot be included on GitHub pages because they strip away the `script` tags.)
 
 ## Sequence diagrams
 
