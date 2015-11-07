@@ -1,48 +1,47 @@
-(function (outerTag, diagramClassSuffix) {
+(function (outerTag, classSuffix) {
   var UML = {
-    diagramNames: [ 'activity', 'class', 'usecase' ],
-    baseURL: 'http://yuml.me/diagram/',
+    diagrams: [ 'activity', 'class', 'usecase' ],
 
     getDiagramURL: function(html, diagramName) {
-      var data = this.getData(html);
-      var params = this.decodeHTML(data);
-      return this.getURL(diagramName, params);
+      return 'http://yuml.me/diagram/' + diagramName + '/' +
+        this.parseDiagram(html);
     },
 
-    getData: function(str) {
-      return str.replace(/[\r\n]+/g, ',').replace(/(^,|,$)/g, '');
-    },
+    parseDiagram: function(html) {
+      return [ html ]
+        .map(getData)
+        .map(decodeHTML)
+        .map(encodeURI)
+        .shift();
 
-    decodeHTML: function(html) {
-      return html.replace(/&lt;/g, '<').
-        replace(/&gt;/g, '>').
-        replace(/&amp;/g, '&').
-        replace(/&#([0-9]+);/g, "$1");
-    },
+      function getData(str) {
+        return str.replace(/[\r\n]+/g, ',')
+          .replace(/(^,|,$)/g, '');
+      }
 
-    getURL: function(diagramName, data) {
-      return this.baseURL + diagramName + '/' + encodeURI(data);
+      function decodeHTML(html) {
+        return html.replace(/&lt;/g, '<')
+          .replace(/&gt;/g, '>')
+          .replace(/&amp;/g, '&')
+          .replace(/&#([0-9]+);/g, "$1");
+      }
     }
   };
 
-  var tags = document.getElementsByTagName(outerTag);
-  Array.prototype.forEach.call(tags, function (tag) {
-    var diagramName = getValue(tag.className, UML.diagramNames, diagramClassSuffix);
-    if (diagramName) {
-      var url = UML.getDiagramURL(tag.innerHTML, diagramName);
-      tag.innerHTML = getImageTag(url);
-    }
-  });
+  Array.prototype.forEach.call(document.getElementsByTagName(outerTag),
+    createImage);
 
-  function getValue(needle, haystack, suffix) {
-    var value;
-    haystack.some(function (hay) {
-      if (needle === hay + suffix) {
-        value = hay;
-        return true;
-      }
-    });
-    return value;
+  function createImage(tag) {
+    UML.diagrams.filter(findWithSuffix.bind(null, tag))
+      .map(UML.getDiagramURL.bind(UML, tag.innerHTML))
+      .map(getImageTag)
+      .forEach(function (url) {
+        tag.innerHTML = url;
+      });
+  }
+
+  function findWithSuffix(tag, hay) {
+    return tag.className === hay + classSuffix;
   }
 
   function getImageTag(url) {
