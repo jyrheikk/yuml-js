@@ -5,7 +5,7 @@
 On your web page,
 
 1. Create and maintain UML diagrams in simple [yUML text notation](http://yuml.me/).
-1. Include [`yUML.js`](yUML.js) (from your web server) to generate UML diagram images on-the-fly.
+1. Include [`yUML.js`](https://jyrheikk.github.io/js/yUML.js) to generate UML diagram images on-the-fly.
 
 **Ease of maintenance** is the main benefit: when UML diagrams are generated from text, no proprietary drawing tool is needed.
 
@@ -39,7 +39,7 @@ Class diagrams describe systems/components and their relations/dependencies:
 
     <script src="yUML.js"></script>
 
-See the [example HTML page](https://dl.dropboxusercontent.com/u/9223101/yuml-js/example-yuml-js.html) that contains the UML diagrams above. (Note that `yUML.js` cannot be included on GitHub pages because they strip away the `script` tags.)
+See the [example HTML page](https://jyrheikk.github.io/html/example-yuml-js.html) that contains the UML diagrams above. (Note that `yUML.js` cannot be included on GitHub pages because they strip away the `script` tags.)
 
 ## Sequence diagrams
 
